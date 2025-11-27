@@ -11,7 +11,7 @@
 	<groupId>com.pms</groupId>
 	<artifactId>pms-validation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>pms-validation</name>
+	<name>PMS Platform - Validation Service</name>
 	<description>Validation Microservice of PMS - Portfolio Management System</description>
 	<url/>
 	<licenses>
