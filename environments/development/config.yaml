@@ -1,0 +1,8 @@
+# PMS Platform - Development Environment Configuration
+# Generated on 2025-11-27
+
+environment:
+  name: development
+  region: us-east-1
+  
+# Add environment-specific configurations here

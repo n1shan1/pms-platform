@@ -1,0 +1,8 @@
+# PMS Platform - Test Environment Configuration
+# Generated on 2025-11-27
+
+environment:
+  name: test
+  region: us-east-1
+  
+# Add environment-specific configurations here

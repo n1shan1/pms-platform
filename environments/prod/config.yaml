@@ -1,0 +1,8 @@
+# PMS Platform - Prod Environment Configuration
+# Generated on 2025-11-27
+
+environment:
+  name: prod
+  region: us-east-1
+  
+# Add environment-specific configurations here

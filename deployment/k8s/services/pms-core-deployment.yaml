@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pms-core
+  namespace: pms-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pms-core
+  template:
+    metadata:
+      labels:
+        app: pms-core
+    spec:
+      containers:
+      - name: pms-core
+        image: pms-core:latest  # Replace with your image registry
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "k8s"
+        - name: KAFKA_BOOTSTRAP_SERVERS
+          value: "kafka:9092"
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 5
+          failureThreshold: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pms-core
+  namespace: pms-platform
+spec:
+  selector:
+    app: pms-core
+  ports:
+  - port: 8080
+    targetPort: 8080
+  type: ClusterIP
