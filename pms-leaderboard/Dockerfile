@@ -3,9 +3,6 @@ FROM maven:3.9-eclipse-temurin-21 AS build
 
 WORKDIR /app
 
-# Copy parent POM
-COPY pom.xml ../pom.xml
-
 # Copy service POM
 COPY pom.xml .
 
@@ -13,7 +10,7 @@ COPY pom.xml .
 COPY src ./src
 
 # Build application
-RUN mvn clean package -DskipTests -f ../pom.xml -pl . -am
+RUN mvn clean package -DskipTests
 
 # Stage 2: Runtime
 FROM eclipse-temurin:21-jre-alpine
